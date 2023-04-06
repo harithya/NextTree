@@ -11,13 +11,13 @@ const EditorLayout: React.FC<PropsWithChildren<Props>> = ({
   return (
     <MainLayout>
       <div className="flex space-x-10">
-        <div className="lg:w-8/12">
+        <div className="xl:w-8/12">
           <div className="mb-10">
             <h3 className="text-2xl font-semibold">{title}</h3>
           </div>
-          <div className="lg:px-40">{children}</div>
+          <div className="xl:px-40">{children}</div>
         </div>
-        <div className="lg:w-4/12 hidden  lg:block">
+        <div className="xl:w-4/12 hidden  xl:block">
           <div className="mockup-phone">
             <div className="camera"></div>
             <div className="display">
