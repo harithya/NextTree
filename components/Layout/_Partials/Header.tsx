@@ -2,8 +2,19 @@ import React from "react";
 import Image from "next/image";
 import { LinkIcon, SwatchIcon } from "@heroicons/react/24/outline";
 import DropdownProfile from "./DropdownProfile";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const router = useRouter();
+
+  const isActive = (route: string) => {
+    if (route === router.pathname) {
+      return "font-medium";
+    }
+    return "";
+  };
+
   return (
     <div className="navbar bg-base-100 container flex justify-between">
       <div className="space-x-5">
@@ -13,16 +24,19 @@ const Header = () => {
         <div className="lg:block hidden">
           <ul className="menu menu-horizontal px-5 space-x-5">
             <li>
-              <a>
+              <Link href={"/admin/home"} className={isActive("/admin/home")}>
                 <LinkIcon className="h-5 w-5" />
                 <label>Links</label>
-              </a>
+              </Link>
             </li>
             <li>
-              <a>
+              <Link
+                href={"/admin/appearance"}
+                className={isActive("/admin/appearance")}
+              >
                 <SwatchIcon className="h-5 w-5" />
                 <label>Appearance</label>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
