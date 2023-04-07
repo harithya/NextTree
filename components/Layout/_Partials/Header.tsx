@@ -19,7 +19,13 @@ const Header = () => {
     <div className="navbar bg-base-100 container flex justify-between fixed z-50 top-0 ">
       <div className="space-x-5">
         <a className="btn btn-ghost normal-case text-xl">
-          <Image src={"/next.svg"} height={80} width={80} alt="Logo Next JS" />
+          <Image
+            src={"/next.svg"}
+            className="text-white"
+            height={80}
+            width={80}
+            alt="Logo Next JS"
+          />
         </a>
         <div className="lg:block hidden">
           <ul className="menu menu-horizontal px-5 space-x-5">

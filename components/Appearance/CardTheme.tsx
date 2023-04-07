@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
-import { title } from "process";
+import { ThemeContext } from "@/contexts/ThemeContext";
 
 interface Props {
   name: string;
   img: string;
 }
 const CardTheme: React.FC<Props> = ({ name, img }) => {
+  const { setTheme } = useContext(ThemeContext);
+
+  const handleChangeTheme = () => {
+    const html = document.querySelector("html");
+    const theme = name.toLowerCase();
+    // change attribute data-theme
+    html?.setAttribute("data-theme", theme);
+    // save theme to local storage
+    localStorage.setItem("theme", theme);
+    // set theme to context
+    setTheme(theme);
+  };
+
   return (
-    <div>
+    <div
+      className="hover:scale-95 transition-all cursor-pointer"
+      onClick={handleChangeTheme}
+    >
       <div className="h-42 w-full border rounded-lg ">
         <div>
           <Image

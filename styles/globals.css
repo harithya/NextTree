@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-100 min-h-screen w-full;
+  @apply bg-base-200/80 min-h-screen w-full;
 }
 
 @layer components {
