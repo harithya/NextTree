@@ -3,6 +3,7 @@ import ImageProfile from "@/components/Appearance/ImageProfile";
 import EditorLayout from "@/components/Layout/EditorLayout";
 import Section from "@/components/Layout/Section";
 import React, { ReactElement } from "react";
+import { listTheme } from "../api/dummy";
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8];
 const Appearance = () => {
@@ -33,8 +34,8 @@ const Appearance = () => {
         <div className="card w-full bg-base-100 shadow-sm">
           <div className="card-body">
             <div className="grid grid-cols-3 gap-5">
-              {arr.map((val) => (
-                <CardTheme key={val} />
+              {listTheme.map((val, i) => (
+                <CardTheme key={i} {...val} />
               ))}
             </div>
           </div>

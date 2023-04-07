@@ -19,7 +19,7 @@ const EditorLayout: React.FC<PropsWithChildren<Props>> = ({
           <div className="mb-10">
             <h3 className="text-2xl font-semibold">{title}</h3>
           </div>
-          <div className="xl:px-40">{children}</div>
+          <div className="xl:px-32">{children}</div>
         </div>
         <div className="xl:w-4/12 hidden xl:block mt-20">
           <div className="xl:fixed top-24">
