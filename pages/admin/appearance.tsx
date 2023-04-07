@@ -1,8 +1,10 @@
+import CardTheme from "@/components/Appearance/CardTheme";
 import ImageProfile from "@/components/Appearance/ImageProfile";
 import EditorLayout from "@/components/Layout/EditorLayout";
 import Section from "@/components/Layout/Section";
 import React, { ReactElement } from "react";
 
+const arr = [1, 2, 3, 4, 5, 6, 7, 8];
 const Appearance = () => {
   return (
     <div className="space-y-10">
@@ -30,10 +32,10 @@ const Appearance = () => {
       <Section title="Themes">
         <div className="card w-full bg-base-100 shadow-sm">
           <div className="card-body">
-            <h2 className="card-title">Card title!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
+            <div className="grid grid-cols-3 gap-5">
+              {arr.map((val) => (
+                <CardTheme key={val} />
+              ))}
             </div>
           </div>
         </div>

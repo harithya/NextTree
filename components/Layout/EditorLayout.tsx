@@ -21,10 +21,12 @@ const EditorLayout: React.FC<PropsWithChildren<Props>> = ({
           </div>
           <div className="xl:px-40">{children}</div>
         </div>
-        <div className="xl:w-4/12 hidden xl:block">
-          <PhoneLayout>
-            <PreviewContent />
-          </PhoneLayout>
+        <div className="xl:w-4/12 hidden xl:block mt-20">
+          <div className="xl:fixed top-24">
+            <PhoneLayout>
+              <PreviewContent />
+            </PhoneLayout>
+          </div>
         </div>
       </div>
       <div className="fixed xl:hidden bottom-5 right-0 left-0 flex justify-center items-center">

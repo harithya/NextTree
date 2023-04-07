@@ -2,11 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply w-full;
-}
-html body {
-  @apply bg-gray-100 h-full w-full;
+body {
+  @apply bg-gray-100 min-h-screen w-full;
 }
 
 @layer components {
