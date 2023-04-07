@@ -6,7 +6,6 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 const InputText: React.FC<Props> = ({ className, ...props }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const divRef = useRef<HTMLDivElement>(null);
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {

@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply w-full;
+}
 html body {
-  @apply bg-gray-100 h-full;
+  @apply bg-gray-100 h-screen w-full;
 }
 
 @layer components {
   .container {
-    @apply xl:px-20 px-5;
+    @apply xl:px-20 px-5 w-full;
   }
 }

@@ -3,7 +3,7 @@ import Header from "./_Partials/Header";
 
 const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div>
+    <div className="w-full">
       <Header />
       <div className="container xl:py-10">{children}</div>
     </div>
