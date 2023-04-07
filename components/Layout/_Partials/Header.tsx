@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { HomeIcon, LinkIcon, SwatchIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, LinkIcon, SwatchIcon } from "@heroicons/react/24/outline";
 import DropdownProfile from "./DropdownProfile";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -18,6 +18,11 @@ const Header = () => {
   return (
     <div className="navbar bg-base-100 container flex justify-between fixed z-50 top-0 ">
       <div className="space-x-5">
+        <div className="flex-none block xl:hidden">
+          <button className="btn btn-square btn-ghost">
+            <Bars3Icon className="h-6 w-6" />
+          </button>
+        </div>
         <a className="btn btn-ghost normal-case text-xl">
           <Image
             src={"/next.svg"}

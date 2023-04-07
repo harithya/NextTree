@@ -7,7 +7,7 @@ interface Props {
   img: string;
 }
 const CardTheme: React.FC<Props> = ({ name, img }) => {
-  const { setTheme } = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const handleChangeTheme = () => {
     const theme = name.toLowerCase();
@@ -20,7 +20,13 @@ const CardTheme: React.FC<Props> = ({ name, img }) => {
       className="hover:scale-95 transition-all cursor-pointer"
       onClick={handleChangeTheme}
     >
-      <div className="h-42 w-full border rounded-lg ">
+      <div
+        className={`h-42 w-full border rounded-lg ${
+          theme === name.toLocaleLowerCase()
+            ? " border-2 border-primary-content"
+            : ""
+        } `}
+      >
         <div>
           <Image
             unoptimized
