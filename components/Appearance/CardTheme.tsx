@@ -10,13 +10,8 @@ const CardTheme: React.FC<Props> = ({ name, img }) => {
   const { setTheme } = useContext(ThemeContext);
 
   const handleChangeTheme = () => {
-    const html = document.querySelector("html");
     const theme = name.toLowerCase();
-    // change attribute data-theme
-    html?.setAttribute("data-theme", theme);
-    // save theme to local storage
     localStorage.setItem("theme", theme);
-    // set theme to context
     setTheme(theme);
   };
 

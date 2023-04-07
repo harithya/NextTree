@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import MainLayout from "./MainLayout";
-import { EyeIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { EyeIcon } from "@heroicons/react/24/outline";
 import Modal from "../Modal";
 import PreviewContent from "../PreviewContent";
 import PhoneLayout from "./PhoneLayout";
