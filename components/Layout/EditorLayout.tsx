@@ -1,6 +1,9 @@
 import React, { PropsWithChildren } from "react";
 import MainLayout from "./MainLayout";
-import { EyeIcon } from "@heroicons/react/24/outline";
+import { EyeIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import Modal from "../Modal";
+import PreviewContent from "../PreviewContent";
+import PhoneLayout from "./PhoneLayout";
 
 interface Props {
   title?: string;
@@ -19,19 +22,24 @@ const EditorLayout: React.FC<PropsWithChildren<Props>> = ({
           <div className="xl:px-40">{children}</div>
         </div>
         <div className="xl:w-4/12 hidden xl:block">
-          <div className="mockup-phone">
-            <div className="camera"></div>
-            <div className="display">
-              <div className="artboard artboard-demo phone-1">Hi.</div>
-            </div>
-          </div>
+          <PhoneLayout>
+            <PreviewContent />
+          </PhoneLayout>
         </div>
       </div>
       <div className="fixed xl:hidden bottom-5 right-0 left-0 flex justify-center items-center">
-        <button className="btn btn-secondary px-10 shadow-md ">
+        <label
+          htmlFor="modal-preview"
+          className="btn btn-secondary px-10 shadow-md "
+        >
           <EyeIcon className="h-5 w-5 mr-3" />
           Preview
-        </button>
+        </label>
+        <Modal id="modal-preview">
+          <PhoneLayout>
+            <PreviewContent />
+          </PhoneLayout>
+        </Modal>
       </div>
     </MainLayout>
   );
