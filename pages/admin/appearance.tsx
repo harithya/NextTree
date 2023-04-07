@@ -4,6 +4,7 @@ import EditorLayout from "@/components/Layout/EditorLayout";
 import Section from "@/components/Layout/Section";
 import React, { ReactElement } from "react";
 import { listTheme } from "../api/dummy";
+import BackgroundForm from "@/components/Appearance/BackgroundForm";
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8];
 const Appearance = () => {
@@ -38,6 +39,13 @@ const Appearance = () => {
                 <CardTheme key={i} {...val} />
               ))}
             </div>
+          </div>
+        </div>
+      </Section>
+      <Section title="Backgrounds">
+        <div className="card w-full bg-base-100 shadow-sm">
+          <div className="card-body">
+            <BackgroundForm />
           </div>
         </div>
       </Section>

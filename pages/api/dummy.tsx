@@ -61,4 +61,23 @@ const listTheme = [
   },
 ];
 
-export { listTheme };
+const listBackground = [
+  {
+    name: "Flat Color",
+    className: "bg-primary",
+    childClassName: null,
+  },
+  {
+    name: "Gradient",
+    className: "bg-gradient-to-t from-primary to-secondary",
+    childClassName: null,
+  },
+  {
+    name: "Image",
+    className: "bg-image bg-gray-100",
+    childClassName:
+      "bg-[url('https://res.cloudinary.com/cv-abdi-creative/image/upload/v1680905007/next-tree/icon/Vector_sk6692.png')]",
+  },
+];
+
+export { listTheme, listBackground };

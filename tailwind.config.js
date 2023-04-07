@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      content: {
+        'image': 'url("https://res.cloudinary.com/cv-abdi-creative/image/upload/v1680905007/next-tree/icon/Vector_sk6692.png")'
+      }
+    },
   },
   plugins: [require("daisyui"), require('@tailwindcss/line-clamp'),],
 }
