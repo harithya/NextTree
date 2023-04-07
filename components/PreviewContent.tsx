@@ -20,10 +20,18 @@ const PreviewContent = () => {
           Enjoy building everything from small app sites to elegant apps
         </p> */}
         <div className="w-full mt-5 space-y-5">
-          <button className="btn btn-primary w-full">Twitter</button>
-          <button className="btn btn-primary w-full">Facebook</button>
-          <button className="btn btn-primary w-full">Instagram</button>
-          <button className="btn btn-primary w-full">Youtube</button>
+          <button className="btn normal-case btn-primary w-full">
+            Twitter
+          </button>
+          <button className="btn normal-case btn-primary w-full">
+            Facebook
+          </button>
+          <button className="btn normal-case btn-primary w-full">
+            Instagram
+          </button>
+          <button className="btn normal-case btn-primary w-full">
+            Youtube
+          </button>
         </div>
       </div>
     </div>

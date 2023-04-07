@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { LinkIcon, SwatchIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, LinkIcon, SwatchIcon } from "@heroicons/react/24/outline";
 import DropdownProfile from "./DropdownProfile";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -25,6 +25,12 @@ const Header = () => {
           <ul className="menu menu-horizontal px-5 space-x-5">
             <li>
               <Link href={"/admin/home"} className={isActive("/admin/home")}>
+                <HomeIcon className="h-5 w-5" />
+                <label>Dashboard</label>
+              </Link>
+            </li>
+            <li>
+              <Link href={"/admin/links"} className={isActive("/admin/links")}>
                 <LinkIcon className="h-5 w-5" />
                 <label>Links</label>
               </Link>

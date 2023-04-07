@@ -1,4 +1,4 @@
-import { PhotoIcon, SwatchIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { PhotoIcon, TrashIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import InputText from "./InputText";
 
@@ -27,9 +27,6 @@ const LinkCard = () => {
           <div className="space-x-5 flex">
             <button className="btn btn-circle btn-sm btn-ghost">
               <PhotoIcon className="h-5 w-5" />
-            </button>
-            <button className="btn btn-circle btn-sm btn-ghost">
-              <SwatchIcon className="h-5 w-5" />
             </button>
           </div>
           <button className="btn btn-circle btn-sm btn-ghost">

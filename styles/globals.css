@@ -6,7 +6,7 @@ html {
   @apply w-full;
 }
 html body {
-  @apply bg-gray-100 h-screen w-full;
+  @apply bg-gray-100 h-full w-full;
 }
 
 @layer components {
