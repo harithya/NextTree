@@ -10,4 +10,15 @@ body {
   .container {
     @apply xl:px-20 px-5 w-full;
   }
+  .form-control {
+    @apply w-full bg-base-300/30 px-5 py-3 rounded-lg outline-none;
+  }
+
+  input[type="color"] {
+    @apply bg-transparent;
+  }
+
+  input[type="color"]::-webkit-color-swatch {
+    @apply border-none rounded-lg;
+  }
 }

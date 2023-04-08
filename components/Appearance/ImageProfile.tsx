@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
+import { ThemeContext } from "@/contexts/ThemeContext";
 
 const ImageProfile = () => {
+  const test = useContext(ThemeContext);
+
   return (
     <div className="flex items-center space-x-5">
       <div className="avatar">
@@ -15,7 +18,21 @@ const ImageProfile = () => {
         </div>
       </div>
       <div className="w-full space-y-5">
-        <button className="btn btn-primary w-full">Pick an Image</button>
+        <button
+          className="btn btn-primary w-full"
+          // onClick={() => {
+          //   dispatch({
+          //     type: "SET_COLOR",
+          //     payload: {
+          //       name: "bg",
+          //       value: "bg-primary",
+          //     },
+          //   });
+          //   console.log(theme);
+          // }}
+        >
+          Pick an Image
+        </button>
         <button className="btn btn-outline btn-primary w-full">
           Remove Image
         </button>

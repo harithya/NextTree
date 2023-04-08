@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 import { ThemeContext } from "@/contexts/ThemeContext";
+import { ThemeAction, ThemeContextType } from "@/types/contexts/theme-type";
 
 interface Props {
   name: string;
   img: string;
 }
 const CardTheme: React.FC<Props> = ({ name, img }) => {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, dispatch }: ThemeContextType = useContext(ThemeContext);
 
   const handleChangeTheme = () => {
     const theme = name.toLowerCase();
     localStorage.setItem("theme", theme);
-    setTheme(theme);
+    dispatch({ type: ThemeAction.SET_THEME, payload: theme });
   };
 
   return (
@@ -22,7 +23,7 @@ const CardTheme: React.FC<Props> = ({ name, img }) => {
     >
       <div
         className={`h-42 w-full border rounded-lg ${
-          theme === name.toLocaleLowerCase()
+          theme.name === name.toLocaleLowerCase()
             ? " border-2 border-primary-content"
             : ""
         } `}
@@ -38,7 +39,7 @@ const CardTheme: React.FC<Props> = ({ name, img }) => {
           />
         </div>
       </div>
-      <h4 className="text-center mt-3 font-semibold">{name}</h4>
+      <h4 className="text-center mt-3">{name}</h4>
     </div>
   );
 };
