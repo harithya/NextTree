@@ -3,7 +3,10 @@ import React from "react";
 export type ITheme = {
   name: string;
   colors: {
-    bg: string | null;
+    title: string;
+    bg: string;
+    button: string;
+    textButton: string;
   };
 };
 

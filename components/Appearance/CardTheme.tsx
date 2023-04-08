@@ -1,19 +1,29 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 import { ThemeContext } from "@/contexts/ThemeContext";
-import { ThemeAction, ThemeContextType } from "@/types/contexts/theme-type";
+import {
+  ITheme,
+  ThemeAction,
+  ThemeContextType,
+} from "@/types/contexts/theme-type";
 
-interface Props {
-  name: string;
+interface Props extends ITheme {
   img: string;
 }
-const CardTheme: React.FC<Props> = ({ name, img }) => {
+const CardTheme: React.FC<Props> = ({ name, img, colors }) => {
   const { theme, dispatch }: ThemeContextType = useContext(ThemeContext);
 
   const handleChangeTheme = () => {
-    const theme = name.toLowerCase();
-    localStorage.setItem("theme", theme);
-    dispatch({ type: ThemeAction.SET_THEME, payload: theme });
+    const payload = {
+      name: name.toLocaleLowerCase(),
+      colors: colors,
+    };
+
+    localStorage.setItem("theme", JSON.stringify(payload));
+    dispatch({
+      type: ThemeAction.SET_THEME,
+      payload: payload,
+    });
   };
 
   return (

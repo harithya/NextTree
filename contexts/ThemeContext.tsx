@@ -1,4 +1,4 @@
-import { ITheme, ThemeContextType } from "@/types/contexts/theme-type";
+import { ITheme } from "@/types/contexts/theme-type";
 import React, {
   PropsWithChildren,
   createContext,
@@ -9,7 +9,10 @@ import React, {
 const initialState: ITheme = {
   name: "pastel",
   colors: {
-    bg: null,
+    title: "#7dc4f",
+    bg: "#f36e2d7",
+    button: "#c7808ff",
+    textButton: "#7f625",
   },
 };
 
@@ -18,7 +21,8 @@ const reducer = (state: any, action: any) => {
     case "SET_THEME":
       return {
         ...state,
-        name: action.payload,
+        name: action.payload.name,
+        colors: action.payload.colors,
       };
     case "SET_ATRRIBUTE":
       return {
@@ -39,11 +43,14 @@ const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [theme, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const value = localStorage.getItem("theme") || "pastel";
-    dispatch({
-      type: "SET_THEME",
-      payload: value,
-    });
+    const payload =
+      JSON.parse(localStorage.getItem("theme") ?? "") ?? initialState;
+    if (theme) {
+      dispatch({
+        type: "SET_THEME",
+        payload: payload,
+      });
+    }
   }, []);
 
   return (

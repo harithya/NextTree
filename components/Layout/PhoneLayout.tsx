@@ -10,7 +10,7 @@ const PhoneLayout: React.FC<PropsWithChildren> = ({ children }) => {
       <div className="display">
         <div
           data-theme={theme.name}
-          className="artboard artboard-demo phone-1 overflow-y-auto items-start justify-start py-20"
+          className={`artboard artboard-demo phone-1 overflow-y-auto items-start justify-start py-20 bg-[${theme.colors.bg}]`}
         >
           {children}
         </div>
