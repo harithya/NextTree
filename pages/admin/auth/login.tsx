@@ -23,7 +23,7 @@ const Login = () => {
         className="input input-bordered w-full "
       />
       <div className="flex justify-between items-center">
-        <div className="form-control">
+        <div>
           <label className="cursor-pointer justify-start space-x-5 label">
             <input type="checkbox" className="checkbox checkbox-primary" />
             <span className="label-text">Remember me</span>

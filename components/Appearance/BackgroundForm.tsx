@@ -1,6 +1,6 @@
 import { listBackground } from "@/pages/api/dummy";
 import React from "react";
-import FlatColor from "./Form/FlatColor";
+import FlatColor from "./Background/FlatColor";
 
 const BackgroundForm = () => {
   return (

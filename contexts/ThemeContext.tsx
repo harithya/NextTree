@@ -4,6 +4,7 @@ import React, {
   createContext,
   useEffect,
   useReducer,
+  useState,
 } from "react";
 
 const initialState: ITheme = {
@@ -41,17 +42,27 @@ const ThemeContext = createContext<any>(null);
 
 const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [theme, dispatch] = useReducer(reducer, initialState);
+  const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    const payload =
-      JSON.parse(localStorage.getItem("theme") ?? "") ?? initialState;
-    if (theme) {
+    const payload = localStorage.getItem("theme")
+      ? JSON.parse(localStorage.getItem("theme") ?? "")
+      : initialState;
+
+    if (payload) {
       dispatch({
         type: "SET_THEME",
         payload: payload,
       });
+      setFirstRender(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (!firstRender) {
+      localStorage.setItem("theme", JSON.stringify(theme));
+    }
+  }, [firstRender, theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, dispatch }}>

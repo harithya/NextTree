@@ -19,7 +19,6 @@ const CardTheme: React.FC<Props> = ({ name, img, colors }) => {
       colors: colors,
     };
 
-    localStorage.setItem("theme", JSON.stringify(payload));
     dispatch({
       type: ThemeAction.SET_THEME,
       payload: payload,

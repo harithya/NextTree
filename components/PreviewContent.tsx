@@ -10,7 +10,6 @@ const PreviewContent = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const { theme } = useContext<ThemeContextType>(ThemeContext);
-
   const rgbToHex = (rgb: string) => {
     return rgb;
   };
@@ -70,7 +69,7 @@ const PreviewContent = () => {
           style={{ color: theme.colors.title }}
           ref={titleRef}
         >
-          @Haruthya
+          @Azzahra
         </h1>
         {/* <p className="text-gray-400 text-center text-xs px-10">
           Enjoy building everything from small app sites to elegant apps
