@@ -1,8 +1,10 @@
 import Input from "@/components/Form/Input";
 import AuthLayout from "@/components/Layout/AuthLayout";
+import http from "@/utils/http";
 import Link from "next/link";
 import React, { ReactElement } from "react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import useStore from "@/hooks/useStore";
 
 interface RegisterForm {

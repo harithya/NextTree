@@ -1,4 +1,3 @@
-import Input from "@/components/Form/Input";
 import AuthLayout from "@/components/Layout/AuthLayout";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -14,12 +13,12 @@ const Login = () => {
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit}>
-      <Input
+      <input
         type="email"
         placeholder="example@gmail.com"
         className="input input-bordered w-full "
       />
-      <Input
+      <input
         type="password"
         placeholder="****"
         className="input input-bordered w-full "
