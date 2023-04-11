@@ -1,27 +1,46 @@
+import Input from "@/components/Form/Input";
 import AuthLayout from "@/components/Layout/AuthLayout";
+import useStore from "@/hooks/useStore";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { ReactElement, SyntheticEvent } from "react";
+import React, { ReactElement } from "react";
+import { useForm } from "react-hook-form";
 
+interface LoginForm {
+  email: string;
+  password: string;
+}
 const Login = () => {
-  const router = useRouter();
+  const { register, handleSubmit } = useForm<LoginForm>();
 
-  const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
-    router.push("/admin/home");
+  const { mutate, isLoading, error } = useStore();
+
+  const onSubmit = (data: LoginForm) => {
+    mutate({
+      url: "/auth/login",
+      data,
+      disableToast: true,
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    });
   };
 
   return (
-    <form className="space-y-5" onSubmit={handleSubmit}>
-      <input
+    <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+      <Input
         type="email"
         placeholder="example@gmail.com"
-        className="input input-bordered w-full "
+        {...register("email")}
+        error={error?.email}
       />
-      <input
+      <Input
         type="password"
         placeholder="****"
-        className="input input-bordered w-full "
+        {...register("password")}
+        error={error?.password}
       />
       <div className="flex justify-between items-center">
         <div>
@@ -37,7 +56,9 @@ const Login = () => {
           Forgot Password
         </a>
       </div>
-      <button className="btn btn-primary w-full">Login</button>
+      <button className={`btn btn-primary w-full ${isLoading ?? "loading"}`}>
+        Login
+      </button>
       <div className="text-center">
         <label className="text-primary">
           Belum punya akun ?{" "}

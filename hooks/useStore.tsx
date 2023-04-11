@@ -11,6 +11,7 @@ const useStore = () => {
     data: any;
     onSuccess?: (data: any) => void;
     onError?: (err: any) => void;
+    disableToast?: boolean;
   }
   const mutate = async (params: Params) => {
     setIsLoading(true);
@@ -21,14 +22,18 @@ const useStore = () => {
         params.onSuccess(req.data);
       }
 
-      addToast("Yeahh data has been saved ", {
-        appearance: "success",
-      });
+      if (!params.disableToast) {
+        addToast("Yeahh data has been saved ", {
+          appearance: "success",
+        });
+      }
 
       return req;
     } catch (error: any) {
       // validation error
-      addToast("Oops something went wrong", {
+      const message =
+        error.response.data.message ?? "Oops something went wrong";
+      addToast(message, {
         appearance: "error",
       });
       if (error.response.status === 422) {
