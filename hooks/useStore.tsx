@@ -28,7 +28,7 @@ const useStore = () => {
       return req;
     } catch (error: any) {
       // validation error
-      addToast("Oops something went wrong", {
+      addToast(error.response.data?.message ?? "Oops something went wrong", {
         appearance: "error",
       });
       if (error.response.status === 422) {
