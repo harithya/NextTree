@@ -5,7 +5,6 @@ import validation from '@/lib/validatator';
 import connectToDatabase from '@/lib/mongodb';
 import bcrypt from 'bcrypt'
 
-
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
@@ -22,6 +21,10 @@ export default async function handler(
     if (error) return res.status(422).json(validation(error));
 
     const { db } = await connectToDatabase();
+
+    const uniqueEmail = await db.collection("users").findOne({ email: req.body.email });
+    if (uniqueEmail) return res.status(422).json({ message: "Email already exists" });
+
     const { name, email, password } = req.body
     try {
         await db.collection("users").insertOne({
@@ -33,6 +36,4 @@ export default async function handler(
     } catch (error) {
         return res.status(500).json({ message: "Something went wrong" });
     }
-
-
 }
