@@ -4,7 +4,7 @@ import validation from '@/lib/validatator';
 import Joi from 'joi';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import bcrypt from 'bcrypt'
-
+import jwt from 'jsonwebtoken'
 
 export default async function handler(
     req: NextApiRequest,
@@ -25,13 +25,20 @@ export default async function handler(
         const { db } = await connectToDatabase();
         const auth = await db.collection("users").findOne({ email });
         if (auth && bcrypt.compareSync(password, auth?.password)) {
+            // @ts-ignore
+            const token = jwt.sign({ id: auth?._id }, process.env.JWT_PRIVATE_KEY, { expiresIn: "7d" });
             return res.status(200).json({
                 message: "User logged in successfully",
-                data: auth
+                data: {
+                    name: auth?.name,
+                    email: auth?.email
+                },
+                token
             });
         }
         return res.status(422).json({ message: "Invalid credentials" });
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ message: "Something went wrong" });
     }
 }
