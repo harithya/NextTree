@@ -1,4 +1,5 @@
 import AuthLayout from "@/components/Layout/AuthLayout";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement, SyntheticEvent } from "react";
 
@@ -40,9 +41,9 @@ const Login = () => {
       <div className="text-center">
         <label className="text-primary">
           Belum punya akun ?{" "}
-          <a href="#" className="text-primary-focus">
+          <Link href="/admin/auth/register" className="text-primary-focus">
             Register
-          </a>
+          </Link>
         </label>
       </div>
     </form>

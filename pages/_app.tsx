@@ -4,6 +4,7 @@ import type { ReactElement, ReactNode } from "react";
 import type { AppProps } from "next/app";
 import type { NextPage } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { ToastProvider } from "react-toast-notifications";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -18,6 +19,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>);
 
   return (
-    <ThemeProvider>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
+    <ThemeProvider>
+      <ToastProvider placement="top-right" autoDismiss>
+        {getLayout(<Component {...pageProps} />)}
+      </ToastProvider>
+    </ThemeProvider>
   );
 }
