@@ -1,7 +1,7 @@
 export interface LoginResult {
   message: string;
   token: string;
-  user: {
+  data: {
     name: string;
     email: string;
   };

@@ -30,9 +30,6 @@ const Login = () => {
           router.replace("/admin/links");
         }
       },
-      onError: (err) => {
-        console.log(err);
-      },
     });
   };
 
