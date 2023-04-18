@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import React, { ReactElement, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useToasts } from "react-toast-notifications";
+import { setCookie } from "cookies-next";
 
 interface LoginForm {
   username: string;
@@ -28,14 +29,14 @@ const Login = () => {
     setIsLoading(true);
     try {
       const req = await http.post("/auth/login", data);
-      localStorage.setItem("token", req.data.token);
+      setCookie("token", req.data.token);
       setUser({
         username: req.data.user.username,
         name: req.data.user.name,
         bio: req.data.user.bio,
         image: req.data.user.image,
       });
-      router.push("/admin/links");
+      router.replace("/admin/links");
     } catch (error: any) {
       if (error.response.status == 422) {
         setError(error.response.data.errors);

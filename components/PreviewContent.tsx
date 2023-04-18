@@ -1,10 +1,15 @@
+import { AuthContext } from "@/contexts/AuthContext";
 import { ThemeContext } from "@/contexts/ThemeContext";
+import { AuthContextType } from "@/types/contexts/auth-type";
 import { ThemeContextType } from "@/types/contexts/theme-type";
 import Image from "next/image";
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef } from "react";
 
 const btn = ["Twitter", "Facebook", "Instagram", "Youtube"];
 const PreviewContent = () => {
+  // auth
+  const { user } = useContext<AuthContextType>(AuthContext);
+
   const titleRef = useRef<HTMLInputElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -69,11 +74,11 @@ const PreviewContent = () => {
           style={{ color: theme.colors.title }}
           ref={titleRef}
         >
-          @Azzahra
+          @{user?.username}
         </h1>
-        {/* <p className="text-gray-400 text-center text-xs px-10">
-          Enjoy building everything from small app sites to elegant apps
-        </p> */}
+        {user?.bio && (
+          <p className="text-gray-400 text-center text-xs px-10">{user.bio}</p>
+        )}
         <div className="w-full mt-10 space-y-5">
           {btn.map((val, i) => (
             <button
