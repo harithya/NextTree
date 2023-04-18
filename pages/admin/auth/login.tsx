@@ -1,8 +1,6 @@
 import Input from "@/components/Form/Input";
 import AuthLayout from "@/components/Layout/AuthLayout";
 import useStore from "@/hooks/useStore";
-import { LoginResult } from "@/types/api";
-import { setCookie } from "cookies-next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
@@ -12,25 +10,14 @@ interface LoginForm {
   email: string;
   password: string;
 }
+
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginForm>();
   const { mutate, isLoading, error } = useStore();
   const router = useRouter();
 
   const onSubmit = (data: LoginForm) => {
-    mutate({
-      url: "/auth/login",
-      data,
-      disableToast: true,
-      onSuccess: (res: LoginResult) => {
-        if (res.token) {
-          setCookie("@token", res.token, {
-            maxAge: 60 * 60 * 24 * 7,
-          });
-          router.replace("/admin/links");
-        }
-      },
-    });
+    router.push("/admin/home");
   };
 
   return (

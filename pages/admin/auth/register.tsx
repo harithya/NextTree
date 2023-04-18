@@ -6,6 +6,7 @@ import React, { ReactElement } from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import useStore from "@/hooks/useStore";
+import { GetServerSideProps } from "next";
 
 interface RegisterForm {
   name: string;
@@ -71,6 +72,21 @@ Register.getLayout = (page: ReactElement) => {
       {page}
     </AuthLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const token = ctx.req.cookies["@token"];
+  if (token) {
+    return {
+      redirect: {
+        destination: "/admin/links",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
 };
 
 export default Register;
