@@ -1,13 +1,13 @@
 import React from "react";
 
 export type IAuth = {
-  name: string;
-  email: string;
+  name?: string;
+  username?: string;
+  bio?: string | null;
+  image?: string | null;
 };
 
 export type AuthContextType = {
   user: IAuth;
-  isLoading: boolean;
-  error: any;
-  onLogin: (data: { email: string; password: string }) => void;
+  setUser: (value: IAuth) => void;
 };

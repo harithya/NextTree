@@ -1,7 +1,6 @@
 import Input from "@/components/Form/Input";
 import AuthLayout from "@/components/Layout/AuthLayout";
 import http from "@/utils/http";
-import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement, useState } from "react";

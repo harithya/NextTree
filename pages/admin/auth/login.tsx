@@ -1,36 +1,63 @@
 import Input from "@/components/Form/Input";
 import AuthLayout from "@/components/Layout/AuthLayout";
-import useStore from "@/hooks/useStore";
+import { AuthContext } from "@/contexts/AuthContext";
+import { AuthContextType } from "@/types/contexts/auth-type";
+import http from "@/utils/http";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useToasts } from "react-toast-notifications";
 
 interface LoginForm {
-  email: string;
+  username: string;
   password: string;
 }
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginForm>();
-  const { mutate, isLoading, error } = useStore();
   const router = useRouter();
+  const { setUser } = useContext<AuthContextType>(AuthContext);
 
-  const onSubmit = (data: LoginForm) => {
-    router.push("/admin/home");
+  // login proccess
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<LoginForm>();
+  const { addToast } = useToasts();
+
+  const onSubmit = async (data: LoginForm) => {
+    setIsLoading(true);
+    try {
+      const req = await http.post("/auth/login", data);
+      localStorage.setItem("token", req.data.token);
+      setUser({
+        username: req.data.user.username,
+        name: req.data.user.name,
+        bio: req.data.user.bio,
+        image: req.data.user.image,
+      });
+      router.push("/admin/links");
+    } catch (error: any) {
+      if (error.response.status == 422) {
+        setError(error.response.data.errors);
+      }
+      addToast(error.response.data.message, {
+        appearance: "error",
+      });
+    }
+    setIsLoading(false);
   };
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
       <Input
-        type="email"
-        placeholder="example@gmail.com"
-        {...register("email")}
-        error={error?.email}
+        type="text"
+        placeholder="Username"
+        {...register("username")}
+        error={error?.username}
       />
       <Input
         type="password"
-        placeholder="****"
+        placeholder="Password"
         {...register("password")}
         error={error?.password}
       />
@@ -48,7 +75,7 @@ const Login = () => {
           Forgot Password
         </a>
       </div>
-      <button className={`btn btn-primary w-full ${isLoading ?? "loading"}`}>
+      <button className={`btn btn-primary w-full ${isLoading && "loading"}`}>
         Login
       </button>
       <div className="text-center">
