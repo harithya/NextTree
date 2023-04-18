@@ -1,21 +1,44 @@
 import Input from "@/components/Form/Input";
 import AuthLayout from "@/components/Layout/AuthLayout";
+import http from "@/utils/http";
+import axios from "axios";
 import Link from "next/link";
-import React, { ReactElement } from "react";
+import { useRouter } from "next/router";
+import React, { ReactElement, useState } from "react";
 import { useForm } from "react-hook-form";
-import useStore from "@/hooks/useStore";
+import { useToasts } from "react-toast-notifications";
 
 interface RegisterForm {
   name: string;
-  email: string;
+  username: string;
   password: string;
 }
 
 const Register = () => {
-  const { handleSubmit, register, reset } = useForm<RegisterForm>();
-  const { isLoading, mutate, error } = useStore();
+  const { handleSubmit, register } = useForm<RegisterForm>();
+  const router = useRouter();
 
-  const onSubmit = (data: RegisterForm) => {};
+  //handle post register
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<RegisterForm>();
+  const { addToast } = useToasts();
+
+  const onSubmit = async (data: RegisterForm) => {
+    setIsLoading(true);
+    try {
+      const req = await http.post("/auth/register", data);
+      addToast(req.data.message, { appearance: "success" });
+      router.push("/admin/auth/login");
+    } catch (error: any) {
+      if (error.response.status == 422) {
+        setError(error.response.data.errors);
+      }
+      addToast(error.response.data.message, {
+        appearance: "error",
+      });
+    }
+    setIsLoading(false);
+  };
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
@@ -27,10 +50,10 @@ const Register = () => {
       />
 
       <Input
-        type="email"
-        placeholder="Email"
-        {...register("email")}
-        error={error?.email}
+        type="text"
+        placeholder="Username"
+        {...register("username")}
+        error={error?.username}
       />
       <Input
         type="password"
@@ -39,7 +62,7 @@ const Register = () => {
         error={error?.password}
       />
 
-      <button className={`btn btn-primary w-full ${isLoading ?? "loading"}`}>
+      <button className={`btn btn-primary w-full ${isLoading && "loading"}`}>
         Register
       </button>
       <div className="text-center">
