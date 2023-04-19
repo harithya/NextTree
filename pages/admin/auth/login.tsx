@@ -18,7 +18,7 @@ interface LoginForm {
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginForm>();
   const router = useRouter();
-  const { setUser } = useContext<AuthContextType>(AuthContext);
+  const { setUser, user } = useContext<AuthContextType>(AuthContext);
 
   // login proccess
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +29,9 @@ const Login = () => {
     setIsLoading(true);
     try {
       const req = await http.post("/auth/login", data);
-      setCookie("token", req.data.token);
+      setCookie("token", req.data.token, {
+        maxAge: 60 * 60 * 24 * 7,
+      });
       setUser({
         username: req.data.user.username,
         name: req.data.user.name,
