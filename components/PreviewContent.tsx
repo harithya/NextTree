@@ -3,52 +3,19 @@ import { ThemeContext } from "@/contexts/ThemeContext";
 import { AuthContextType } from "@/types/contexts/auth-type";
 import { ThemeContextType } from "@/types/contexts/theme-type";
 import Image from "next/image";
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
+import { useQuery } from "react-query";
+import http from "@/utils/http";
+import { LinkResult } from "@/types/api";
 
-const btn = ["Twitter", "Facebook", "Instagram", "Youtube"];
 const PreviewContent = () => {
-  // auth
   const { user } = useContext<AuthContextType>(AuthContext);
-
-  const titleRef = useRef<HTMLInputElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
   const { theme } = useContext<ThemeContextType>(ThemeContext);
-  const rgbToHex = (rgb: string) => {
-    return rgb;
-  };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     console.log({
-  //       title: rgbToHex(
-  //         window
-  //           // @ts-ignore
-  //           .getComputedStyle(titleRef.current)
-  //           .getPropertyValue("color")
-  //       ),
-  //       bg: rgbToHex(
-  //         window
-  //           // @ts-ignore
-  //           .getComputedStyle(bgRef.current)
-  //           .getPropertyValue("background-color")
-  //       ),
-  //       button: rgbToHex(
-  //         window
-  //           // @ts-ignore
-  //           .getComputedStyle(buttonRef.current)
-  //           .getPropertyValue("background-color")
-  //       ),
-  //       textButton: rgbToHex(
-  //         window
-  //           // @ts-ignore
-  //           .getComputedStyle(buttonRef.current)
-  //           .getPropertyValue("color")
-  //       ),
-  //     });
-  //   }, 1000);
-  // }, [theme.name]);
+  const { data } = useQuery(["links"], async () => {
+    const req = await http.get("link");
+    return req.data.links;
+  });
 
   return (
     <div
@@ -56,9 +23,8 @@ const PreviewContent = () => {
       style={{
         backgroundColor: theme.colors.bg,
       }}
-      ref={bgRef}
     >
-      <div className="flex justify-center flex-col items-center">
+      <div className="flex justify-center w-full flex-col items-center">
         <div className="avatar mb-5">
           <div className="w-20 mask mask-squircle">
             <Image
@@ -69,28 +35,24 @@ const PreviewContent = () => {
             />
           </div>
         </div>
-        <h1
-          className="font-bold text-xl"
-          style={{ color: theme.colors.title }}
-          ref={titleRef}
-        >
+        <h1 className="font-bold text-xl" style={{ color: theme.colors.title }}>
           @{user?.username}
         </h1>
         {user?.bio && (
           <p className="text-gray-400 text-center text-xs px-10">{user.bio}</p>
         )}
         <div className="w-full mt-10 space-y-5">
-          {btn.map((val, i) => (
+          {data?.map((val: LinkResult, i: number) => (
             <button
               key={i}
-              className="btn normal-case  w-full"
+              className="btn normal-case w-full"
               style={{
                 backgroundColor: theme.colors.button,
                 border: theme.colors.button,
                 color: theme.colors.textButton,
               }}
             >
-              {val}
+              {val.title}
             </button>
           ))}
         </div>

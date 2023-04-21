@@ -1,8 +1,16 @@
 import { PhotoIcon, TrashIcon } from "@heroicons/react/24/outline";
-import React from "react";
+import React, { useState } from "react";
 import InputText from "./InputText";
+import { LinkResult } from "@/types/api";
 
-const LinkCard = () => {
+const LinkCard: React.FC<LinkResult> = ({ title, url, image, is_active }) => {
+  const [data, setData] = useState({
+    title,
+    url,
+    image,
+    is_active,
+  });
+
   return (
     <div className="card w-full bg-base-100 shadow-sm mb-5">
       <div className="card-body w-full">
@@ -11,17 +19,20 @@ const LinkCard = () => {
             type="text"
             className="card-title"
             autoComplete={"nope"}
-            value={"Twitter"}
+            value={data.title}
           />
-          <input type="checkbox" className="toggle" />
+          <input
+            type="checkbox"
+            className="toggle"
+            onChange={() => null}
+            checked={Boolean(data.is_active)}
+          />
         </div>
         <InputText
           type="text"
           autoComplete="nope"
           className=" mt-2"
-          value={
-            "https://www.youtube.com/watch?v=VXlpuj8Le-g&list=RDllzj6tUlXTc&index=20"
-          }
+          value={data.url}
         />
         <div className="mt-5 flex justify-between">
           <div className="space-x-5 flex">
