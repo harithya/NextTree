@@ -10,6 +10,7 @@ import { LinkResult } from "@/types/api";
 import { useForm } from "react-hook-form";
 import { useToasts } from "react-toast-notifications";
 import Input from "@/components/Form/Input";
+import { useLoading } from "@/contexts/LoadingContext";
 
 interface LinkForm {
   name: string;
@@ -26,6 +27,7 @@ const Links = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<LinkForm>();
   const { addToast } = useToasts();
+  const loadingContext = useLoading();
 
   const onSubmit = async (data: LinkForm) => {
     setLoading(true);
@@ -53,7 +55,7 @@ const Links = () => {
         Add Link
       </label>
       <div className="mt-5">
-        {isLoading ? (
+        {isLoading || loadingContext.isLoading ? (
           <LoadingCard />
         ) : (
           data?.map((val: LinkResult) => <LinkCard key={val.id} {...val} />)

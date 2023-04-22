@@ -8,6 +8,7 @@ import { ToastProvider } from "react-toast-notifications";
 import { AuthContextProvider } from "@/contexts/AuthContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { LoadingContextProvider } from "@/contexts/LoadingContext";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -25,11 +26,13 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
-        <ThemeProvider>
-          <ToastProvider placement="top-right" autoDismiss>
-            {getLayout(<Component {...pageProps} />)}
-          </ToastProvider>
-        </ThemeProvider>
+        <LoadingContextProvider>
+          <ThemeProvider>
+            <ToastProvider placement="top-right" autoDismiss>
+              {getLayout(<Component {...pageProps} />)}
+            </ToastProvider>
+          </ThemeProvider>
+        </LoadingContextProvider>
       </AuthContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
