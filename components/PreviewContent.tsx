@@ -42,19 +42,21 @@ const PreviewContent = () => {
           <p className="text-gray-400 text-center text-xs px-10">{user.bio}</p>
         )}
         <div className="w-full mt-10 space-y-5">
-          {data?.map((val: LinkResult, i: number) => (
-            <button
-              key={i}
-              className="btn normal-case w-full"
-              style={{
-                backgroundColor: theme.colors.button,
-                border: theme.colors.button,
-                color: theme.colors.textButton,
-              }}
-            >
-              {val.title}
-            </button>
-          ))}
+          {data
+            ?.filter((i: LinkResult) => i.is_active === 1)
+            .map((val: LinkResult, i: number) => (
+              <button
+                key={i}
+                className="btn normal-case w-full"
+                style={{
+                  backgroundColor: theme.colors.button,
+                  border: theme.colors.button,
+                  color: theme.colors.textButton,
+                }}
+              >
+                {val.title}
+              </button>
+            ))}
         </div>
       </div>
     </div>

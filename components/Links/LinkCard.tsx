@@ -32,6 +32,26 @@ const LinkCard: React.FC<LinkResult> = ({
     setIsLoading(false);
   };
 
+  const updateLink = async (name: string, value: string) => {
+    await http.post(`link/${id}`, {
+      _method: "PUT",
+      [name]: value,
+    });
+    await queryClient.refetchQueries("links");
+  };
+
+  const updateOnBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
+    updateLink(e.target.name, e.target.value);
+  };
+
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.type === "checkbox") {
+      setData({ ...data, [e.target.name]: e.target.checked });
+      return;
+    }
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="card w-full bg-base-100 shadow-sm mb-5">
       <div className="card-body w-full">
@@ -41,19 +61,30 @@ const LinkCard: React.FC<LinkResult> = ({
             className="card-title"
             autoComplete={"nope"}
             value={data.title}
+            name="title"
+            onChange={handleChange}
+            onBlur={updateOnBlur}
           />
           <input
             type="checkbox"
             className="toggle"
-            onChange={() => null}
+            onChange={(e) => {
+              handleChange(e);
+              updateLink(e.target.name, e.target.checked ? "1" : "0");
+            }}
+            value={1}
+            name="is_active"
             checked={Boolean(data.is_active)}
           />
         </div>
         <InputText
           type="text"
           autoComplete="nope"
+          name="url"
           className=" mt-2"
           value={data.url}
+          onChange={handleChange}
+          onBlur={updateOnBlur}
         />
         <div className="mt-5 flex justify-between">
           <div className="space-x-5 flex">

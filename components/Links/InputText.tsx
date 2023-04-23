@@ -19,9 +19,12 @@ const InputText: React.FC<Props> = ({ className, ...props }) => {
       {isFocus ? (
         <input
           ref={inputRef}
-          onBlur={() => setIsFocus(false)}
           className={`w-full min-w-fit outline-none ${className}`}
           {...props}
+          onBlur={(e) => {
+            setIsFocus(false);
+            props.onBlur?.(e);
+          }}
         />
       ) : (
         <React.Fragment>
