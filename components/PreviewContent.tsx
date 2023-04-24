@@ -1,7 +1,5 @@
 import { AuthContext } from "@/contexts/AuthContext";
-import { ThemeContext } from "@/contexts/ThemeContext";
 import { AuthContextType } from "@/types/contexts/auth-type";
-import { ThemeContextType } from "@/types/contexts/theme-type";
 import Image from "next/image";
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
@@ -10,46 +8,14 @@ import { LinkResult } from "@/types/api";
 
 const PreviewContent = () => {
   const { user } = useContext<AuthContextType>(AuthContext);
-  const { theme } = useContext<ThemeContextType>(ThemeContext);
 
   const { data } = useQuery(["links"], async () => {
     const req = await http.get("link");
     return req.data.links;
   });
 
-  // const componentToHex = (c: number) => {
-  //   const hex = c.toString(16);
-  //   return hex.length == 1 ? "0" + hex : hex;
-  // };
-
-  // const rgbToHex = (color: string) => {
-  //   const r = parseInt(color.split(",")[0].split("(")[1]);
-  //   const g = parseInt(color.split(",")[1]);
-  //   const b = parseInt(color.split(",")[2].split(")")[0]);
-  //   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-  // };
-
-  // useEffect(() => {
-  //   if (theme.colors.title !== "") {
-  //     console.log({
-  //       name: theme.name,
-  //       colors: {
-  //         background: rgbToHex(theme.colors.bg),
-  //         button: rgbToHex(theme.colors.button),
-  //         text_button: rgbToHex(theme.colors.textButton),
-  //         title: rgbToHex(theme.colors.title),
-  //       },
-  //     });
-  //   }
-  // }, [theme]);
-
   return (
-    <div
-      className="px-5 w-full h-screen flex justify-center items-start"
-      style={{
-        backgroundColor: theme.colors.background,
-      }}
-    >
+    <div className="px-5 w-full h-screen flex justify-center items-start">
       <div className="flex justify-center w-full flex-col items-center">
         <div className="avatar mb-5">
           <div className="w-20 mask mask-squircle">
@@ -61,9 +27,7 @@ const PreviewContent = () => {
             />
           </div>
         </div>
-        <h1 className="font-bold text-xl" style={{ color: theme.colors.title }}>
-          @{user?.username}
-        </h1>
+        <h1 className="font-bold text-xl">@{user?.username}</h1>
         {user?.bio && (
           <p className="text-gray-400 text-center text-xs px-10">{user.bio}</p>
         )}
@@ -71,15 +35,7 @@ const PreviewContent = () => {
           {data
             ?.filter((i: LinkResult) => i.is_active === 1)
             .map((val: LinkResult, i: number) => (
-              <button
-                key={i}
-                className="btn normal-case w-full"
-                style={{
-                  backgroundColor: theme.colors.button,
-                  border: theme.colors.button,
-                  color: theme.colors.text_button,
-                }}
-              >
+              <button key={i} className="btn normal-case w-full">
                 {val.title}
               </button>
             ))}
