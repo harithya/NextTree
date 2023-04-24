@@ -3,11 +3,14 @@ import ImageProfile from "@/components/Appearance/ImageProfile";
 import EditorLayout from "@/components/Layout/EditorLayout";
 import Section from "@/components/Layout/Section";
 import React, { ReactElement } from "react";
-import { listTheme } from "../api/dummy";
 import BackgroundForm from "@/components/Appearance/BackgroundForm";
+import http from "@/utils/http";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { ThemeResult } from "@/types/api";
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8];
-const Appearance = () => {
+const Appearance = ({
+  theme,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <div className="space-y-10">
       <Section title="Profile">
@@ -20,11 +23,14 @@ const Appearance = () => {
                   type="text"
                   className="w-full bg-base-300/30 px-5 py-3 rounded-lg outline-none"
                   placeholder="Username"
+                  disabled
+                  onChange={() => null}
                 />
                 <textarea
                   className="w-full bg-base-300/30 px-5 py-3 rounded-lg outline-none"
                   placeholder="Bio"
                   rows={3}
+                  onChange={() => null}
                 ></textarea>
               </form>
             </div>
@@ -35,7 +41,7 @@ const Appearance = () => {
         <div className="card w-full bg-base-100 shadow-sm">
           <div className="card-body">
             <div className="grid grid-cols-3 gap-5">
-              {listTheme.map((val, i) => (
+              {theme?.map((val: ThemeResult, i: number) => (
                 <CardTheme key={i} {...val} />
               ))}
             </div>
@@ -56,5 +62,14 @@ const Appearance = () => {
 Appearance.getLayout = (page: ReactElement) => {
   return <EditorLayout>{page}</EditorLayout>;
 };
+
+export async function getServerSideProps(context: GetServerSideProps) {
+  const req = await http.get("theme");
+  return {
+    props: {
+      theme: req.data.theme,
+    },
+  };
+}
 
 export default Appearance;

@@ -10,10 +10,10 @@ import React, {
 const initialState: ITheme = {
   name: "pastel",
   colors: {
-    title: "#7dc4f",
-    bg: "#f36e2d7",
-    button: "#c7808ff",
-    textButton: "#7f625",
+    title: "",
+    bg: "",
+    button: "",
+    textButton: "",
   },
 };
 

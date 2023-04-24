@@ -1,14 +1,5 @@
 import React from "react";
-
-export type ITheme = {
-  name: string;
-  colors: {
-    title: string;
-    bg: string;
-    button: string;
-    textButton: string;
-  };
-};
+import { ThemeResult } from "../api";
 
 export enum ThemeAction {
   SET_THEME = "SET_THEME",
@@ -16,6 +7,6 @@ export enum ThemeAction {
 }
 
 export type ThemeContextType = {
-  theme: ITheme;
+  theme: ThemeResult;
   dispatch: React.Dispatch<any>;
 };

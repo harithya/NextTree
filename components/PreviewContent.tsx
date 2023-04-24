@@ -17,11 +17,37 @@ const PreviewContent = () => {
     return req.data.links;
   });
 
+  // const componentToHex = (c: number) => {
+  //   const hex = c.toString(16);
+  //   return hex.length == 1 ? "0" + hex : hex;
+  // };
+
+  // const rgbToHex = (color: string) => {
+  //   const r = parseInt(color.split(",")[0].split("(")[1]);
+  //   const g = parseInt(color.split(",")[1]);
+  //   const b = parseInt(color.split(",")[2].split(")")[0]);
+  //   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  // };
+
+  // useEffect(() => {
+  //   if (theme.colors.title !== "") {
+  //     console.log({
+  //       name: theme.name,
+  //       colors: {
+  //         background: rgbToHex(theme.colors.bg),
+  //         button: rgbToHex(theme.colors.button),
+  //         text_button: rgbToHex(theme.colors.textButton),
+  //         title: rgbToHex(theme.colors.title),
+  //       },
+  //     });
+  //   }
+  // }, [theme]);
+
   return (
     <div
-      className="px-5 w-full h-screen flex justify-center items-center"
+      className="px-5 w-full h-screen flex justify-center items-start"
       style={{
-        backgroundColor: theme.colors.bg,
+        backgroundColor: theme.colors.background,
       }}
     >
       <div className="flex justify-center w-full flex-col items-center">
@@ -51,7 +77,7 @@ const PreviewContent = () => {
                 style={{
                   backgroundColor: theme.colors.button,
                   border: theme.colors.button,
-                  color: theme.colors.textButton,
+                  color: theme.colors.text_button,
                 }}
               >
                 {val.title}

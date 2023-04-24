@@ -14,6 +14,7 @@ const ColorPicker: React.FC<Props> = ({ label, ...props }) => {
           type="text"
           className="form-control"
           placeholder="bg-primary"
+          onChange={() => null}
           {...props}
         />
       </div>

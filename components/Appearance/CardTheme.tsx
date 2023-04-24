@@ -1,16 +1,10 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 import { ThemeContext } from "@/contexts/ThemeContext";
-import {
-  ITheme,
-  ThemeAction,
-  ThemeContextType,
-} from "@/types/contexts/theme-type";
+import { ThemeAction, ThemeContextType } from "@/types/contexts/theme-type";
+import { ThemeResult } from "@/types/api";
 
-interface Props extends ITheme {
-  img: string;
-}
-const CardTheme: React.FC<Props> = ({ name, img, colors }) => {
+const CardTheme: React.FC<ThemeResult> = ({ name, image, colors }) => {
   const { theme, dispatch }: ThemeContextType = useContext(ThemeContext);
 
   const handleChangeTheme = () => {
@@ -40,7 +34,7 @@ const CardTheme: React.FC<Props> = ({ name, img, colors }) => {
         <div>
           <Image
             unoptimized
-            src={img}
+            src={image}
             className="rounded-lg"
             alt="Theme"
             width={300}
