@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import http from "@/utils/http";
 import { LinkResult } from "@/types/api";
+import helper from "@/utils/helper";
 
 const PreviewContent = () => {
   const { user } = useContext<AuthContextType>(AuthContext);
@@ -20,16 +21,18 @@ const PreviewContent = () => {
         <div className="avatar mb-5">
           <div className="w-20 mask mask-squircle">
             <Image
-              src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+              src={helper.getAvatar(user.image)}
               height={150}
               width={150}
               alt="Profile Image"
             />
           </div>
         </div>
-        <h1 className="font-bold text-xl">@{user?.username}</h1>
+        <h1 className="font-bold text-xl">{user?.name}</h1>
         {user?.bio && (
-          <p className="text-gray-400 text-center text-xs px-10">{user.bio}</p>
+          <p className="text-gray-400 text-center text-xs mt-2 px-10">
+            {user.bio}
+          </p>
         )}
         <div className="w-full mt-10 space-y-5">
           {data

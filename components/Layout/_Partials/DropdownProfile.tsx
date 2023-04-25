@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const DropdownProfile = () => {
+  // const { user } = useContext(AuthContext);
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
