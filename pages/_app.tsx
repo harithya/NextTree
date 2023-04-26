@@ -44,15 +44,15 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <LoadingContextProvider>
+      <LoadingContextProvider>
+        <AuthContextProvider>
           <ThemeProvider>
             <ToastProvider placement="top-right" autoDismiss>
               {getLayout(<Component {...pageProps} />)}
             </ToastProvider>
           </ThemeProvider>
-        </LoadingContextProvider>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </LoadingContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

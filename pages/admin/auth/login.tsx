@@ -18,7 +18,7 @@ interface LoginForm {
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginForm>();
   const router = useRouter();
-  const { setUser, user } = useContext<AuthContextType>(AuthContext);
+  const { setUser } = useContext<AuthContextType>(AuthContext);
 
   // login proccess
   const [isLoading, setIsLoading] = useState(false);

@@ -1,4 +1,4 @@
-import { IAuth } from "@/types/contexts/auth-type";
+import { AuthContextType, IAuth } from "@/types/contexts/auth-type";
 import http from "@/utils/http";
 import { getCookie } from "cookies-next";
 import React, {
@@ -6,9 +6,13 @@ import React, {
   createContext,
   useState,
   useEffect,
+  useContext,
 } from "react";
 
 const AuthContext = createContext<any>(null);
+const useAuth = () => {
+  return useContext<AuthContextType>(AuthContext);
+};
 
 const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<IAuth>({
@@ -38,4 +42,4 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export { AuthContext, AuthContextProvider };
+export { AuthContext, AuthContextProvider, useAuth };
