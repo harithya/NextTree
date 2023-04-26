@@ -3,7 +3,7 @@ import EditorLayout from "@/components/Layout/EditorLayout";
 import Section from "@/components/Layout/Section";
 import React, { ReactElement } from "react";
 import http from "@/utils/http";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { InferGetServerSidePropsType } from "next";
 import { ThemeResult } from "@/types/api";
 import ProfileForm from "@/components/Appearance/ProfileForm";
 
@@ -38,11 +38,19 @@ Appearance.getLayout = (page: ReactElement) => {
   return <EditorLayout>{page}</EditorLayout>;
 };
 
-export async function getServerSideProps(context: GetServerSideProps) {
-  const req = await http.get("theme");
+export async function getServerSideProps(context: any) {
+  let theme = [];
+  try {
+    const req = await http.get("theme", {
+      headers: {
+        Authorization: `Bearer ${context.req.cookies.token}`,
+      },
+    });
+    theme = req.data.theme;
+  } catch (error) {}
   return {
     props: {
-      theme: req.data.theme,
+      theme: theme,
     },
   };
 }

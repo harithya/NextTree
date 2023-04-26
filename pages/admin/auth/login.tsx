@@ -29,10 +29,10 @@ const Login = () => {
     setIsLoading(true);
     try {
       const req = await http.post("/auth/login", data);
-      setCookie("token", req.data.token, {
+      await setCookie("token", req.data.token, {
         maxAge: 60 * 60 * 24 * 7,
       });
-      setUser({
+      await setUser({
         username: req.data.user.username,
         name: req.data.user.name,
         bio: req.data.user.bio,

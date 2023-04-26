@@ -28,7 +28,9 @@ const PreviewContent = () => {
             />
           </div>
         </div>
-        <h1 className="font-bold text-xl">{user?.name}</h1>
+        <h1 className="font-bold text-xl line-clamp-1 text-center">
+          {user?.name}
+        </h1>
         {user?.bio && (
           <p className="text-gray-400 text-center text-xs mt-2 px-10">
             {user.bio}
