@@ -22,7 +22,7 @@ const PreviewContent = () => {
     <div
       className={`px-5 w-full h-screen flex justify-center items-start flex-1`}
       style={{
-        backgroundColor: theme?.colors.background,
+        background: theme?.colors.background,
       }}
     >
       <div className="flex py-20 justify-center w-full flex-col items-center">

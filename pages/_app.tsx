@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       }
     };
     checkLogin();
-  }, [router]);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

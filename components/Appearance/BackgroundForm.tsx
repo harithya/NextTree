@@ -1,15 +1,49 @@
 import { listBackground } from "@/pages/api/dummy";
-import React from "react";
+import React, { useContext } from "react";
 import FlatColor from "./Background/FlatColor";
+import { ThemeContext } from "@/contexts/ThemeContext";
+import { ThemeContextType } from "@/types/contexts/theme-type";
+import LinearColor from "./Background/LinearColor";
 
 const BackgroundForm = () => {
+  const { theme, handleSetTheme } = useContext<ThemeContextType>(ThemeContext);
+  console.log(theme?.bg);
+
+  const renderForm = () => {
+    if (theme?.bg == undefined || theme?.bg == "flat") {
+      return <FlatColor />;
+    }
+    if (theme?.bg == "gradient") {
+      return <LinearColor />;
+    }
+  };
+
+  const handleTheme = (name: string) => {
+    handleSetTheme({
+      ...theme,
+      bg: name,
+    });
+  };
+
+  const isActive = (name: string) => {
+    if (theme?.bg == name) {
+      return "border border-black";
+    }
+
+    if (theme?.bg == undefined && name == "flat") {
+      return "border border-black";
+    }
+  };
+
   return (
     <div>
       <div className="grid grid-cols-3 gap-5 mb-10">
         {listBackground.map((val, i) => (
-          <div key={i}>
+          <div key={i} onClick={() => handleTheme(val.id)}>
             <div
-              className={`w-full h-48 hover:scale-95 transition-all cursor-pointer rounded-lg border flex justify-center items-center ${val.className}`}
+              className={`w-full h-48 hover:scale-95 transition-all cursor-pointer rounded-lg border flex justify-center items-center ${
+                val.className
+              } ${isActive(val.id)}`}
             >
               {val.childClassName && (
                 <div
@@ -21,7 +55,7 @@ const BackgroundForm = () => {
           </div>
         ))}
       </div>
-      <FlatColor />
+      {renderForm()}
     </div>
   );
 };

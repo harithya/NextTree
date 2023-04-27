@@ -153,19 +153,19 @@ const listTheme = [
 
 const listBackground = [
   {
-    id: 5448242,
+    id: "flat",
     name: "Flat Color",
     className: "bg-primary",
     childClassName: null,
   },
   {
-    id: 4812949,
+    id: "gradient",
     name: "Gradient",
     className: "bg-gradient-to-t from-primary to-secondary",
     childClassName: null,
   },
   {
-    id: 7136482,
+    id: "image",
     name: "Image",
     className: "bg-image bg-gray-100",
     childClassName:

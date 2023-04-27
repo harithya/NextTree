@@ -20,6 +20,7 @@ export interface ThemeResult {
   id: string;
   name: string;
   image: string;
+  bg?: string;
   colors: ThemeColorResult;
 }
 

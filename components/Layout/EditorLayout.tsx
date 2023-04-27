@@ -1,9 +1,12 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useContext } from "react";
 import MainLayout from "./MainLayout";
 import { EyeIcon } from "@heroicons/react/24/outline";
 import Modal from "../Modal";
 import PreviewContent from "../PreviewContent";
 import PhoneLayout from "./PhoneLayout";
+import { ThemeContext } from "@/contexts/ThemeContext";
+import { ThemeContextType } from "@/types/contexts/theme-type";
+import Loading from "../Loading";
 
 interface Props {
   title?: string;
@@ -12,8 +15,11 @@ const EditorLayout: React.FC<PropsWithChildren<Props>> = ({
   children,
   title,
 }) => {
+  const { isLoading } = useContext<ThemeContextType>(ThemeContext);
+
   return (
     <MainLayout>
+      {isLoading && <Loading />}
       <div className="flex space-x-10">
         <div className="xl:w-8/12 w-full">
           <div className="mb-10">

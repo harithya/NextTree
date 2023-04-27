@@ -6,6 +6,7 @@ import http from "@/utils/http";
 import { InferGetServerSidePropsType } from "next";
 import { ThemeResult } from "@/types/api";
 import ProfileForm from "@/components/Appearance/ProfileForm";
+import BackgroundForm from "@/components/Appearance/BackgroundForm";
 
 const Appearance = ({
   theme,
@@ -27,6 +28,13 @@ const Appearance = ({
                 <CardTheme key={i} {...val} />
               ))}
             </div>
+          </div>
+        </div>
+      </Section>
+      <Section title="Background">
+        <div className="card w-full bg-base-100 shadow-sm">
+          <div className="card-body">
+            <BackgroundForm />
           </div>
         </div>
       </Section>

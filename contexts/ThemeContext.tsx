@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ThemeResult } from "@/types/api";
 import http from "@/utils/http";
 import React, {
@@ -12,16 +13,22 @@ const ThemeContext = createContext<any>(null);
 
 const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useState<ThemeResult | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { addToast } = useToasts();
 
   useEffect(() => {
+    setIsLoading(true);
     http
       .get("/my-theme")
       .then((res) => {
-        setTheme(res.data.theme.content);
+        setIsLoading(false);
+        setTheme(res.data.theme?.content);
       })
       .catch((err) => {
-        alert("Opps something went wrong");
+        setIsLoading(false);
+        addToast("Opps something went wrong", {
+          appearance: "error",
+        });
       });
   }, []);
 
@@ -40,7 +47,7 @@ const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, handleSetTheme }}>
+    <ThemeContext.Provider value={{ theme, handleSetTheme, isLoading }}>
       {children}
     </ThemeContext.Provider>
   );
