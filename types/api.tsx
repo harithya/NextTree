@@ -21,6 +21,7 @@ export interface ThemeResult {
   name: string;
   image: string;
   bg?: string;
+  bg_image?: string;
   colors: ThemeColorResult;
 }
 

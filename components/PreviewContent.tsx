@@ -19,52 +19,58 @@ const PreviewContent = () => {
   });
 
   return (
-    <div
-      className={`px-5 w-full h-screen flex justify-center items-start flex-1`}
-      style={{
-        background: theme?.colors.background,
-      }}
-    >
-      <div className="flex py-20 justify-center w-full flex-col items-center">
-        <div className="avatar mb-5">
-          <div className="w-20 mask mask-squircle">
-            <Image
-              src={helper.getAvatar(user.image)}
-              height={150}
-              width={150}
-              alt="Profile Image"
-            />
+    <div className=" w-full h-screen relative">
+      <div
+        key={theme?.colors.background}
+        className={`px-5 w-full  h-full flex  justify-center bg-cover items-start flex-1`}
+        style={{
+          background: theme?.colors.background,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "bottom",
+        }}
+      >
+        <div className="flex py-20 justify-center w-full flex-col items-center">
+          <div className="avatar mb-5">
+            <div className="w-20 mask mask-squircle">
+              <Image
+                src={helper.getAvatar(user.image)}
+                height={150}
+                width={150}
+                alt="Profile Image"
+              />
+            </div>
           </div>
-        </div>
-        <h1
-          className="font-bold text-xl line-clamp-1 text-center"
-          style={{
-            color: theme?.colors.title,
-          }}
-        >
-          {user?.name}
-        </h1>
-        {user?.bio && (
-          <p className="text-gray-400 text-center text-xs mt-2 px-10">
-            {user.bio}
-          </p>
-        )}
-        <div className="w-full mt-10 space-y-5">
-          {data
-            ?.filter((i: LinkResult) => i.is_active === 1)
-            .map((val: LinkResult, i: number) => (
-              <button
-                key={i}
-                className="btn normal-case w-full"
-                style={{
-                  backgroundColor: theme?.colors.button,
-                  color: theme?.colors.text_button,
-                  borderColor: theme?.colors.button,
-                }}
-              >
-                {val.title}
-              </button>
-            ))}
+          <h1
+            className="font-bold text-xl line-clamp-1 text-center"
+            style={{
+              color: theme?.colors.title,
+            }}
+          >
+            {user?.name}
+          </h1>
+          {user?.bio && (
+            <p className="text-gray-400 text-center text-xs mt-2 px-10">
+              {user.bio}
+            </p>
+          )}
+          <div className="w-full mt-10 space-y-5 ">
+            {data
+              ?.filter((i: LinkResult) => i.is_active === 1)
+              .map((val: LinkResult, i: number) => (
+                <button
+                  key={i}
+                  className="btn normal-case w-full"
+                  style={{
+                    backgroundColor: theme?.colors.button,
+                    color: theme?.colors.text_button,
+                    borderColor: theme?.colors.button,
+                  }}
+                >
+                  {val.title}
+                </button>
+              ))}
+          </div>
         </div>
       </div>
     </div>

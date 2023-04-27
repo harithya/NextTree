@@ -4,10 +4,10 @@ import FlatColor from "./Background/FlatColor";
 import { ThemeContext } from "@/contexts/ThemeContext";
 import { ThemeContextType } from "@/types/contexts/theme-type";
 import LinearColor from "./Background/LinearColor";
+import BgImage from "./Background/BgImage";
 
 const BackgroundForm = () => {
   const { theme, handleSetTheme } = useContext<ThemeContextType>(ThemeContext);
-  console.log(theme?.bg);
 
   const renderForm = () => {
     if (theme?.bg == undefined || theme?.bg == "flat") {
@@ -15,6 +15,9 @@ const BackgroundForm = () => {
     }
     if (theme?.bg == "gradient") {
       return <LinearColor />;
+    }
+    if (theme?.bg == "image") {
+      return <BgImage />;
     }
   };
 

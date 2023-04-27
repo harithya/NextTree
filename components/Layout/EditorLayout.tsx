@@ -2,11 +2,15 @@ import React, { PropsWithChildren, useContext } from "react";
 import MainLayout from "./MainLayout";
 import { EyeIcon } from "@heroicons/react/24/outline";
 import Modal from "../Modal";
-import PreviewContent from "../PreviewContent";
 import PhoneLayout from "./PhoneLayout";
 import { ThemeContext } from "@/contexts/ThemeContext";
 import { ThemeContextType } from "@/types/contexts/theme-type";
 import Loading from "../Loading";
+import dynamic from "next/dynamic";
+
+const PreviewContent = dynamic(() => import("../PreviewContent"), {
+  ssr: false,
+});
 
 interface Props {
   title?: string;
@@ -28,7 +32,7 @@ const EditorLayout: React.FC<PropsWithChildren<Props>> = ({
           <div className="xl:px-32">{children}</div>
         </div>
         <div className="xl:w-4/12 hidden xl:block mt-20">
-          <div className="xl:fixed top-24">
+          <div className="xl:sticky top-28 relative">
             <PhoneLayout>
               <PreviewContent />
             </PhoneLayout>
