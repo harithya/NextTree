@@ -32,7 +32,7 @@ const PreviewContent = () => {
       >
         <div className="flex py-20 justify-center w-full flex-col items-center">
           <div className="avatar mb-5">
-            <div className="w-20 mask mask-squircle">
+            <div className={`w-20 mask ${theme?.attributes.avatar_mask}`}>
               <Image
                 src={helper.getAvatar(user.image)}
                 height={150}
@@ -60,14 +60,20 @@ const PreviewContent = () => {
               .map((val: LinkResult, i: number) => (
                 <button
                   key={i}
-                  className={`btn normal-case w-full rounded-full ${theme?.attributes?.button_radius}`}
+                  className={`btn normal-case w-full relative rounded-full border ${theme?.attributes?.button_radius}`}
                   style={{
                     backgroundColor: theme?.colors.button,
                     color: theme?.colors.text_button,
-                    borderColor: theme?.colors.button,
+                    borderColor:
+                      theme?.colors.border_button ?? theme?.colors.button,
                   }}
                 >
-                  {val.title}
+                  {/* <img
+                    src="https://lastfm.freetls.fastly.net/i/u/ar0/38a7b533b357b66c29df9124f8c36930.jpg"
+                    alt="cover image"
+                    className={`${theme?.attributes.button_radius} h-6 w-6 absolute left-3`}
+                  /> */}
+                  <span>{val.title}</span>
                 </button>
               ))}
           </div>

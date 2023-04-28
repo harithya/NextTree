@@ -8,6 +8,7 @@ import { ThemeResult } from "@/types/api";
 import ProfileForm from "@/components/Appearance/ProfileForm";
 import BackgroundForm from "@/components/Appearance/BackgroundForm";
 import ButtonForm from "@/components/Appearance/ButtonForm";
+import AvatarForm from "@/components/Appearance/AvatarForm";
 
 const Appearance = ({
   theme,
@@ -43,6 +44,13 @@ const Appearance = ({
         <div className="card w-full bg-base-100 shadow-sm">
           <div className="card-body">
             <ButtonForm />
+          </div>
+        </div>
+      </Section>
+      <Section title="Avatar">
+        <div className="card w-full bg-base-100 shadow-sm">
+          <div className="card-body">
+            <AvatarForm />
           </div>
         </div>
       </Section>

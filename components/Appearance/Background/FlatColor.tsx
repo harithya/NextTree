@@ -21,7 +21,7 @@ const FlatColor = () => {
     <div>
       <ColorPicker
         label={"Flat Color"}
-        value={theme?.colors.background}
+        value={theme?.colors.background ?? "#ffffff"}
         onChange={(e) => setBg(e.target.value)}
         onBlur={handleTheme}
       />

@@ -5,6 +5,8 @@ import { LinkResult } from "@/types/api";
 import { useQueryClient } from "react-query";
 import http from "@/utils/http";
 import { useLoading } from "@/contexts/LoadingContext";
+import Image from "next/image";
+import { IMAGE_PLACEHOLDER } from "@/utils/constant";
 
 const LinkCard: React.FC<LinkResult> = ({
   title,
@@ -22,6 +24,7 @@ const LinkCard: React.FC<LinkResult> = ({
 
   const queryClient = useQueryClient();
   const { setIsLoading } = useLoading();
+  const [collapse, setCollapse] = useState(false);
 
   const handleDelete = async () => {
     const confirm = window.confirm("Are you sure want to delete this link?");
@@ -88,7 +91,10 @@ const LinkCard: React.FC<LinkResult> = ({
         />
         <div className="mt-5 flex justify-between">
           <div className="space-x-5 flex">
-            <button className="btn btn-circle btn-sm btn-ghost">
+            <button
+              className="btn btn-circle btn-sm btn-ghost"
+              onClick={() => setCollapse(!collapse)}
+            >
               <PhotoIcon className="h-5 w-5" />
             </button>
           </div>
@@ -99,6 +105,25 @@ const LinkCard: React.FC<LinkResult> = ({
             <TrashIcon className="h-5 w-5" />
           </button>
         </div>
+        {collapse && (
+          <div className="py-5 flex items-center  flex-col lg:flex-row lg:space-x-5 space-y-5 lg:space-y-0">
+            <div className="p-5 border bg-gray-50 rounded-md flex items-center justify-center relative h-36 w-36">
+              {/* <Image
+                src={IMAGE_PLACEHOLDER}
+                height={150}
+                width={150}
+                alt="Image Cover"
+              /> */}
+              <p className="text-sm text-center text-gray-500">Image Button</p>
+            </div>
+            <div className="flex space-y-5 flex-col">
+              <button className="btn btn-primary px-10">Pick Image</button>
+              <button className="btn btn-primary btn-outline">
+                Remove Image
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -13,6 +13,10 @@ const ButtonForm = () => {
     theme?.colors.text_button
   );
 
+  const [borderButton, setBorderButton] = useState(
+    theme?.colors?.border_button ?? theme?.colors.button
+  );
+
   const handleChangeColor = (name: string, value: string) => {
     handleSetTheme({
       ...theme,
@@ -35,7 +39,7 @@ const ButtonForm = () => {
 
   return (
     <div className="w-full">
-      <div className="flex space-x-5 mb-10">
+      <div className="grid grid-cols-3 gap-5 mb-10">
         {btnStyle.map((val, i: number) => (
           <button
             key={i}
@@ -54,13 +58,19 @@ const ButtonForm = () => {
           label="Text Color"
           onChange={(e) => setTextColorButton(e.target.value)}
           onBlur={() => handleChangeColor("text_button", textColorButton)}
-          value={theme?.colors.text_button}
+          value={theme?.colors.text_button ?? "#ffffff"}
         />
         <ColorPicker
           label="Background"
           onChange={(e) => setBackgroundButton(e.target.value)}
           onBlur={() => handleChangeColor("button", backgroundButton)}
-          value={theme?.colors.button}
+          value={theme?.colors.button ?? "#ffffff"}
+        />
+        <ColorPicker
+          label="Border Color"
+          onChange={(e) => setBorderButton(e.target.value)}
+          onBlur={() => handleChangeColor("border_button", borderButton)}
+          value={borderButton}
         />
       </div>
     </div>

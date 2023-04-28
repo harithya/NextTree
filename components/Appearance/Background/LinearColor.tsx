@@ -30,13 +30,13 @@ const LinearColor = () => {
   return (
     <div className="space-y-5">
       <ColorPicker
-        value={firstColor}
+        value={firstColor ?? "#ffffff"}
         onChange={(e) => setFirstColor(e.target.value)}
         label="Color Top"
         onBlur={changeBackgroundLinear}
       />
       <ColorPicker
-        value={secondColor}
+        value={secondColor ?? "#ffffff"}
         onChange={(e) => setSecondColor(e.target.value)}
         label="Color Bottom"
         onBlur={changeBackgroundLinear}
