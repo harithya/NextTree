@@ -5,8 +5,7 @@ import { LinkResult } from "@/types/api";
 import { useQueryClient } from "react-query";
 import http from "@/utils/http";
 import { useLoading } from "@/contexts/LoadingContext";
-import Image from "next/image";
-import { IMAGE_PLACEHOLDER } from "@/utils/constant";
+import ImagePicker from "./ImagePicker";
 
 const LinkCard: React.FC<LinkResult> = ({
   title,
@@ -105,25 +104,7 @@ const LinkCard: React.FC<LinkResult> = ({
             <TrashIcon className="h-5 w-5" />
           </button>
         </div>
-        {collapse && (
-          <div className="py-5 flex items-center  flex-col lg:flex-row lg:space-x-5 space-y-5 lg:space-y-0">
-            <div className="p-5 border bg-gray-50 rounded-md flex items-center justify-center relative h-36 w-36">
-              {/* <Image
-                src={IMAGE_PLACEHOLDER}
-                height={150}
-                width={150}
-                alt="Image Cover"
-              /> */}
-              <p className="text-sm text-center text-gray-500">Image Button</p>
-            </div>
-            <div className="flex space-y-5 flex-col">
-              <button className="btn btn-primary px-10">Pick Image</button>
-              <button className="btn btn-primary btn-outline">
-                Remove Image
-              </button>
-            </div>
-          </div>
-        )}
+        {collapse && <ImagePicker id={id} image={data?.image} />}
       </div>
     </div>
   );

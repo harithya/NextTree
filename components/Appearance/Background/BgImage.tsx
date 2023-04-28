@@ -88,6 +88,7 @@ const BgImage = () => {
             type="file"
             className="hidden"
             id="file-upload"
+            accept="image/png, image/jpeg"
             onChange={(e) => {
               if (e.target.files) {
                 setData(e.target.files[0]);

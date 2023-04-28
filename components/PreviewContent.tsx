@@ -68,11 +68,15 @@ const PreviewContent = () => {
                       theme?.colors.border_button ?? theme?.colors.button,
                   }}
                 >
-                  {/* <img
-                    src="https://lastfm.freetls.fastly.net/i/u/ar0/38a7b533b357b66c29df9124f8c36930.jpg"
-                    alt="cover image"
-                    className={`${theme?.attributes.button_radius} h-6 w-6 absolute left-3`}
-                  /> */}
+                  {val?.image && (
+                    <Image
+                      height={80}
+                      width={80}
+                      src={val?.image}
+                      alt="cover image"
+                      className={`${theme?.attributes.button_radius} h-6 w-6 absolute left-3`}
+                    />
+                  )}
                   <span>{val.title}</span>
                 </button>
               ))}
