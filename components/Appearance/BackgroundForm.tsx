@@ -30,11 +30,11 @@ const BackgroundForm = () => {
 
   const isActive = (name: string) => {
     if (theme?.bg == name) {
-      return "border border-black";
+      return "border-2 border-black";
     }
 
     if (theme?.bg == undefined && name == "flat") {
-      return "border border-black";
+      return "border-2 border-black";
     }
   };
 

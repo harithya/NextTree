@@ -15,7 +15,7 @@ const CardTheme: React.FC<ThemeResult> = (props) => {
     >
       <div
         className={`h-42 w-full border rounded-lg ${
-          theme?.name === name && "border-black"
+          theme?.name === name && "border-2 border-black"
         }`}
       >
         <div>

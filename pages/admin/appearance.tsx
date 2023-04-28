@@ -7,6 +7,7 @@ import { InferGetServerSidePropsType } from "next";
 import { ThemeResult } from "@/types/api";
 import ProfileForm from "@/components/Appearance/ProfileForm";
 import BackgroundForm from "@/components/Appearance/BackgroundForm";
+import ButtonForm from "@/components/Appearance/ButtonForm";
 
 const Appearance = ({
   theme,
@@ -35,6 +36,13 @@ const Appearance = ({
         <div className="card w-full bg-base-100 shadow-sm">
           <div className="card-body">
             <BackgroundForm />
+          </div>
+        </div>
+      </Section>
+      <Section title="Button">
+        <div className="card w-full bg-base-100 shadow-sm">
+          <div className="card-body">
+            <ButtonForm />
           </div>
         </div>
       </Section>

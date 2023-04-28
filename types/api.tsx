@@ -23,6 +23,7 @@ export interface ThemeResult {
   bg?: string;
   bg_image?: string;
   colors: ThemeColorResult;
+  attributes: ThemeAttributeResult;
 }
 
 export interface ThemeColorResult {
@@ -32,4 +33,11 @@ export interface ThemeColorResult {
   button: string;
   text_button: string;
   themes_id: string;
+}
+
+export interface ThemeAttributeResult {
+  id: string;
+  themes_id: string;
+  button_radius: string;
+  avatar_mask: string;
 }

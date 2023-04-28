@@ -63,8 +63,9 @@ const BgImage = () => {
           htmlFor="file-upload"
           className="h-48 bg-gray-100 border w-full rounded-lg flex justify-center items-center cursor-pointer "
         >
-          {isLoading && <p>Loading... </p>}
-          {formatUrlImage() ? (
+          {isLoading ? (
+            <p className="text-center">Loading... </p>
+          ) : formatUrlImage() ? (
             <img
               src={
                 formatUrlImage() ??
@@ -82,6 +83,7 @@ const BgImage = () => {
               alt="Default Image"
             />
           )}
+
           <input
             type="file"
             className="hidden"

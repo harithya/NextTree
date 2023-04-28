@@ -60,7 +60,7 @@ const PreviewContent = () => {
               .map((val: LinkResult, i: number) => (
                 <button
                   key={i}
-                  className="btn normal-case w-full"
+                  className={`btn normal-case w-full rounded-full ${theme.attributes?.button_radius}`}
                   style={{
                     backgroundColor: theme?.colors.button,
                     color: theme?.colors.text_button,

@@ -3,7 +3,6 @@ import "@/styles/globals.css";
 import { ReactElement, ReactNode, useEffect } from "react";
 import type { AppProps } from "next/app";
 import type { NextPage } from "next";
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import { ToastProvider } from "react-toast-notifications";
 import { AuthContextProvider } from "@/contexts/AuthContext";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -47,9 +46,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <ToastProvider placement="top-right" autoDismiss>
         <LoadingContextProvider>
           <AuthContextProvider>
-            <ThemeProvider>
-              {getLayout(<Component {...pageProps} />)}
-            </ThemeProvider>
+            {getLayout(<Component {...pageProps} />)}
           </AuthContextProvider>
         </LoadingContextProvider>
       </ToastProvider>

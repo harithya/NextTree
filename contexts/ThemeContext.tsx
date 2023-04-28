@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Loading from "@/components/Loading";
 import { ThemeResult } from "@/types/api";
 import http from "@/utils/http";
 import React, {
@@ -48,7 +49,10 @@ const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, handleSetTheme, isLoading }}>
-      {children}
+      <React.Fragment>
+        {isLoading && <Loading />}
+        {children}
+      </React.Fragment>
     </ThemeContext.Provider>
   );
 };
