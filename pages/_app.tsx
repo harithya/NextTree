@@ -26,7 +26,13 @@ Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout =
     Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>);

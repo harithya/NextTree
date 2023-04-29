@@ -46,7 +46,7 @@ const AvatarForm = () => {
               theme?.attributes.avatar_mask == val && "border-2 border-black"
             }`}
           >
-            <div className={`w-16 mask ${val}`}>
+            <div className={`w-20 mask ${val}`}>
               <Image
                 src="https://res.cloudinary.com/cv-abdi-creative/image/upload/v1682380030/next-tree/avatar_ymrwu1.webp"
                 height={150}
