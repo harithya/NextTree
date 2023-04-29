@@ -7,6 +7,7 @@ import http from "@/utils/http";
 import { useToasts } from "react-toast-notifications";
 import { useRouter } from "next/router";
 import { deleteCookie } from "cookies-next";
+import Link from "next/link";
 
 const DropdownProfile = () => {
   const { user } = useContext<AuthContextType>(AuthContext);
@@ -47,6 +48,7 @@ const DropdownProfile = () => {
         className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
       >
         <li>
+          <Link href={`/${user.username}`}>Visit Bio</Link>
           <button onClick={logout}>Logout</button>
         </li>
       </ul>

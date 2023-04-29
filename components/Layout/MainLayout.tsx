@@ -10,7 +10,7 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
     <div className="w-full">
       <Header />
       <div className="container pb-24">
-        <div className="mt-16">{children}</div>
+        <div className="">{children}</div>
       </div>
     </div>
   );
