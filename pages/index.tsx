@@ -5,7 +5,7 @@ import React, { ReactElement } from "react";
 const Home = () => {
   return (
     <div className="min-h-screen bg-white flex justify-center">
-      <div className="flex w-full lg:flex-row lg:justify-between items-center container">
+      <div className="flex w-full lg:flex-row lg:justify-between items-center container-fluid">
         <div className="lg:w-6/12">
           <h2 className="text-5xl font-bold leading-normal">
             Everything you are. In one, simple link in bio.

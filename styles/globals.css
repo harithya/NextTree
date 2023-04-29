@@ -7,7 +7,7 @@ body {
 }
 
 @layer components {
-  .container {
+  .container-fluid {
     @apply xl:px-20 px-5 w-full;
   }
   .form-control {

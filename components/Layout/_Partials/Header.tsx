@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <Fragment>
-      <div className="navbar bg-base-100 container flex justify-between sticky z-50 top-0 ">
+      <div className="navbar bg-base-100 container-fluid flex justify-between sticky z-50 top-0 ">
         <div className="space-x-5">
           <div className="flex-none block xl:hidden">
             <button

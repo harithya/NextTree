@@ -12,12 +12,14 @@ const LinkPage = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { theme, user, link } = data;
+
   return (
     <div className="min-h-screen flex justify-items-center  justify-center">
       <div className="w-full lg:w-5/12 bg-white min-h-screen">
         <div className=" w-full h-screen relative">
           <div
             key={theme?.colors.background}
+            id="bg-container"
             className={`px-8 w-full  h-full flex  justify-center bg-cover items-start flex-1`}
             style={{
               background: theme?.colors.background,
@@ -28,7 +30,7 @@ const LinkPage = ({
           >
             <div className="flex py-20 justify-center w-full flex-col items-center">
               <div className="avatar mb-5">
-                <div className={`w-20 mask ${theme?.attributes.avatar_mask}`}>
+                <div className={`w-24 mask ${theme?.attributes.avatar_mask}`}>
                   <Image
                     src={helper.getAvatar(user.image)}
                     height={150}
