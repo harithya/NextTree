@@ -6,10 +6,12 @@ import type { NextPage } from "next";
 import { ToastProvider } from "react-toast-notifications";
 import { AuthContextProvider } from "@/contexts/AuthContext";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { LoadingContextProvider } from "@/contexts/LoadingContext";
 import { useRouter } from "next/router";
 import http from "@/utils/http";
+import Router from "next/router";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -18,6 +20,11 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
+
+NProgress.configure({ showSpinner: false });
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 const queryClient = new QueryClient();
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
@@ -55,7 +62,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           </AuthContextProvider>
         </LoadingContextProvider>
       </ToastProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

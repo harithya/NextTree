@@ -56,7 +56,7 @@ const PreviewContent = () => {
           )}
           <div className="w-full mt-10 space-y-5 ">
             {data
-              ?.filter((i: LinkResult) => i.is_active === 1)
+              ?.filter((i: LinkResult) => i.is_active == 1)
               .map((val: LinkResult, i: number) => (
                 <button
                   key={i}

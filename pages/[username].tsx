@@ -6,6 +6,7 @@ import { InferGetServerSidePropsType } from "next";
 import http from "@/utils/http";
 import helper from "@/utils/helper";
 import { LinkResult } from "@/types/api";
+import Link from "next/link";
 
 const LinkPage = ({
   data,
@@ -51,7 +52,9 @@ const LinkPage = ({
               )}
               <div className="w-full mt-10 space-y-5 ">
                 {link.map((val: LinkResult, i: number) => (
-                  <button
+                  <Link
+                    href={val.url}
+                    target="_blank"
                     key={i}
                     className={`btn normal-case w-full relative rounded-full border ${theme?.attributes?.button_radius}`}
                     style={{
@@ -70,7 +73,7 @@ const LinkPage = ({
                       />
                     )}
                     <span>{val.title}</span>
-                  </button>
+                  </Link>
                 ))}
               </div>
             </div>
