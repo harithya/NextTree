@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
-import { Bars3Icon, LinkIcon, SwatchIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowUpRightIcon,
+  Bars3Icon,
+  LinkIcon,
+  SwatchIcon,
+} from "@heroicons/react/24/outline";
 import DropdownProfile from "./DropdownProfile";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { AuthContext } from "@/contexts/AuthContext";
+import { AuthContextType } from "@/types/contexts/auth-type";
 
 const Header = () => {
   const router = useRouter();
+  const { user } = useContext<AuthContextType>(AuthContext);
 
   const isActive = (route: string) => {
     if (route === router.pathname) {
@@ -52,7 +60,17 @@ const Header = () => {
           </ul>
         </div>
       </div>
-      <DropdownProfile />
+      <div className="space-x-5">
+        <Link
+          href={"/" + user?.username}
+          target="_blank"
+          className="btn  btn-sm px-5 btn-outline "
+        >
+          <ArrowUpRightIcon className="h-4 w-4 mr-3" />
+          Visit Link Bio
+        </Link>
+        <DropdownProfile />
+      </div>
     </div>
   );
 };

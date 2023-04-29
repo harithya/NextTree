@@ -13,9 +13,7 @@ const ButtonForm = () => {
     theme?.colors.text_button
   );
 
-  const [borderButton, setBorderButton] = useState(
-    theme?.colors?.border_button ?? theme?.colors.button
-  );
+  const [borderButton, setBorderButton] = useState(theme?.colors.border_button);
 
   const handleChangeColor = (name: string, value: string) => {
     handleSetTheme({
@@ -70,7 +68,7 @@ const ButtonForm = () => {
           label="Border Color"
           onChange={(e) => setBorderButton(e.target.value)}
           onBlur={() => handleChangeColor("border_button", borderButton)}
-          value={borderButton}
+          value={theme?.colors.border_button ?? "#ffffff"}
         />
       </div>
     </div>

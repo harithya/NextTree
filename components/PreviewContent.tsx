@@ -64,8 +64,7 @@ const PreviewContent = () => {
                   style={{
                     backgroundColor: theme?.colors.button,
                     color: theme?.colors.text_button,
-                    borderColor:
-                      theme?.colors.border_button ?? theme?.colors.button,
+                    borderColor: theme?.colors.border_button,
                   }}
                 >
                   {val?.image && (

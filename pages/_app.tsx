@@ -27,7 +27,12 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter();
   useEffect(() => {
     const checkLogin = async () => {
-      const guestPages = ["/admin/auth/login", "/admin/auth/register"];
+      const guestPages = [
+        "/admin/auth/login",
+        "/admin/auth/register",
+        "/",
+        "/[username]",
+      ];
       if (!guestPages.includes(router.pathname)) {
         try {
           await http.get("profile");

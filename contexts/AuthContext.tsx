@@ -24,14 +24,17 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (getCookie("token")) {
-      http.get("/profile").then((res) => {
-        setUser({
-          name: res.data.user.name,
-          username: res.data.user.username,
-          image: res.data.user.image,
-          bio: res.data.user.bio,
-        });
-      });
+      http
+        .get("/profile")
+        .then((res) => {
+          setUser({
+            name: res.data.user.name,
+            username: res.data.user.username,
+            image: res.data.user.image,
+            bio: res.data.user.bio,
+          });
+        })
+        .catch((err) => {});
     }
   }, []);
 

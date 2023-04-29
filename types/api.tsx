@@ -33,7 +33,7 @@ export interface ThemeColorResult {
   button: string;
   text_button: string;
   themes_id: string;
-  border_button?: string;
+  border_button: string;
 }
 
 export interface ThemeAttributeResult {
