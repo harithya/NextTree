@@ -34,8 +34,7 @@ const queryClient = new QueryClient({
   },
 });
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout =
-    Component.getLayout ?? ((page) => <MainLayout>{page}</MainLayout>);
+  const getLayout = Component.getLayout ?? ((page) => <div>{page}</div>);
 
   const router = useRouter();
   useEffect(() => {

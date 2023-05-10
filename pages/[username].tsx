@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 import Image from "next/image";
-import axios from "axios";
 import { InferGetServerSidePropsType } from "next";
 import http from "@/utils/http";
 import helper from "@/utils/helper";
@@ -11,7 +10,7 @@ import Link from "next/link";
 const LinkPage = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { theme, user, link } = data;
+  const { theme, user, link }: any = data;
 
   return (
     <div className="min-h-screen flex justify-items-center  justify-center">
@@ -92,20 +91,20 @@ LinkPage.getLayout = (page: ReactElement) => {
 
 export const getServerSideProps = async (ctx: any) => {
   const username = ctx.query.username;
+  let data = {};
   try {
     const req = await http.get(`app/${username}`);
-    return {
-      props: {
-        data: req.data.result,
-      },
-    };
+    data = req.data.result;
   } catch (error) {
     return {
-      props: {
-        data: {},
-      },
+      notFound: true,
     };
   }
+  return {
+    props: {
+      data: data,
+    },
+  };
 };
 
 export default LinkPage;
