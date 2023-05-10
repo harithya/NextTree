@@ -1,6 +1,4 @@
-## Screenshots
-
-![](https://raw.githubusercontent.com/harithya/NextTree/main/public/readme.png)
+![App Image](https://raw.githubusercontent.com/harithya/NextTree/main/public/readme.png)
 
 <p align="center">Demo website <a href="https://next-tree.vercel.app/">visit here</a>. Made using next.js and tailwind-css.
 </p>
